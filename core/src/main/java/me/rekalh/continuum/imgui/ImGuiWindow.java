@@ -51,7 +51,7 @@ public abstract class ImGuiWindow {
     }
 
     public void setup() {
-        if (!hasCustomSize)
+        if (!this.hasCustomSize)
             ImGui.setNextWindowSize((float)width, (float)height);
 
         if (!ImGui.begin(title, flags)) {
@@ -63,13 +63,13 @@ public abstract class ImGuiWindow {
         this.height = (int)ImGui.getWindowHeight();
         this.width = (int)ImGui.getWindowWidth();
 
-        if (height != prevHeight || width != prevWidth) {
-            onResize();
-            prevHeight = height;
-            prevWidth = width;
+        if (this.height != this.prevHeight || this.width != this.prevWidth) {
+            this.onResize();
+            this.prevHeight = height;
+            this.prevWidth = width;
         }
 
-        render();
+        this.render();
         ImGui.end();
     }
 

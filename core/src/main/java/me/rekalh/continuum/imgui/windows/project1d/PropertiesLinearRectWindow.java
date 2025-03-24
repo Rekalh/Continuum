@@ -1,17 +1,13 @@
 package me.rekalh.continuum.imgui.windows.project1d;
 
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import imgui.ImGui;
 import imgui.type.ImString;
-import me.rekalh.continuum.imgui.ImGuiWindow;
+import me.rekalh.continuum.imgui.windows.CreateProjectWindow;
+import me.rekalh.continuum.imgui.windows.PropertiesWindow;
+import me.rekalh.continuum.util.ShaderManager;
 
-/*
-    In this window you specify the parameters for the project. These parameters include:
-        - Width and height of the geometry
-        - 2 Color accents
-        - More to come in the future (provided the project doesn't get abandoned)
- */
-
-public class PropertiesLinear1DWindow extends ImGuiWindow {
+public class PropertiesLinearRectWindow extends PropertiesWindow {
 
     private final float[] pWidth = {100};
     private final float[] pHeight = {100};
@@ -19,28 +15,26 @@ public class PropertiesLinear1DWindow extends ImGuiWindow {
     private final float[] pColor2 = {0f, 0f, 1f};
     private final float[] pColor3 = {0f, 1f, 0f};
 
-    private final String projectName;
-
-    public PropertiesLinear1DWindow(int width, int height, String title, ImString projectName, int... flags) {
-        super(width, height, title, flags);
-
-        this.projectName = projectName.get();
+    public PropertiesLinearRectWindow(int width, int height, String title, ImString projectName, CreateProjectWindow.Geometry geometry, int... flags) {
+        super(width, height, title, projectName, geometry, flags);
     }
 
-    public PropertiesLinear1DWindow(String title, ImString projectName, int... flags) {
-        super(title, flags);
-
-        this.projectName = projectName.get();
+    public PropertiesLinearRectWindow(String title, ImString projectName, CreateProjectWindow.Geometry geometry, int... flags) {
+        super(title, projectName, geometry, flags);
     }
 
     @Override
     public void render() {
         ImGui.text("Parameters");
-        ImGui.dragFloat("Width", pWidth);
-        ImGui.dragFloat("Height", pHeight);
+        ImGui.sliderFloat("Width", pWidth, 0, 500);
+        ImGui.sliderFloat("Height", pHeight, 0, 500);
         ImGui.colorEdit3("Select 'high' color", pColor1);
         ImGui.colorEdit3("Select 'low' color", pColor2);
         ImGui.colorEdit3("Select 'neutral' color", pColor3);
+    }
+
+    protected ShaderProgram initializeShader() {
+        return ShaderManager.loadShader("shader1DLinear.vert", "shader1DLinear.frag");
     }
 
     public float getPWidth() {
@@ -61,9 +55,5 @@ public class PropertiesLinear1DWindow extends ImGuiWindow {
 
     public float[] getPColor3() {
         return this.pColor3;
-    }
-
-    public String getProjectName() {
-        return this.projectName;
     }
 }
