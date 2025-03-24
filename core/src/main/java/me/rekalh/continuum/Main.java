@@ -10,8 +10,8 @@ import me.rekalh.continuum.imgui.windows.TestWindow;
 public class Main extends ApplicationAdapter {
 
     public static final float ASPECT_RATIO = 16f / 9f;
-    private static final int window_height = 720;
-    public static final int[] RESOLUTION = {(int)(window_height * ASPECT_RATIO), 720};
+    private static final int WINDOW_HEIGHT = 720;
+    public static final int[] RESOLUTION = {(int)(WINDOW_HEIGHT * ASPECT_RATIO), 720};
 
     public static ImGuiRenderer imGuiRenderer;
 

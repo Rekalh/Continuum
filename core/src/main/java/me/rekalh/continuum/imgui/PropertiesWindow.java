@@ -1,8 +1,8 @@
-package me.rekalh.continuum.imgui.windows;
+package me.rekalh.continuum.imgui;
 
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import imgui.type.ImString;
-import me.rekalh.continuum.imgui.ImGuiWindow;
+import me.rekalh.continuum.imgui.windows.CreateProjectWindow;
 
 /*
     In this window you specify the parameters for the project. These parameters include:

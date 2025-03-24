@@ -1,33 +1,27 @@
 # Continuum
+A simple and bare-bones Transport Phenomena visualizing tool (and soon-to-be numerical solver). It is mainly a passion project and is not expected to be a top of the shelf product, nor a proper replacement for your typical CFD solver.
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+## Subprojects
+The project consists of two **subprojects**
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+- ## `core`
+Everything is here. From rendering to solving, all will be included in this project.
+- ## `lwjgl3`
+Here is the setup for the typical desktop application. Things like creating the main window are handled here.
 
-## Platforms
+## Features and future goals for this project
+Everything that has been implemented so far is:
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+- ImGui integration, with custom ImGui window rendering.
+- Rendering in custom ImGui windows with shader programs.
+- A simple project creation window. There are options for selecting basic 1D and 2D geometries (`Linear`, `Rectangular`, `Disk`), as well as inputting a project name.
+- Out of these only `Linear` has been partly implemented. (So far it renders a rectangle with variable dimensions and a linear interpolation between three specified colors).
 
-## Gradle
+The long-term goals are:
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+- Fully custom geometries.
+- An integrated numerical solver for both steady-state and dynamic models.
+- Visualization of the numerical solutions on the specified geometry.
+- Perhaps 3D support.
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
-
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+Of course this is not final, and the scope of the project may change a lot during development.

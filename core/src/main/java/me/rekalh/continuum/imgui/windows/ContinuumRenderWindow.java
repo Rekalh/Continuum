@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.ScreenUtils;
 import imgui.ImGui;
+import me.rekalh.continuum.imgui.PropertiesWindow;
 import me.rekalh.continuum.imgui.RenderWindow;
 import me.rekalh.continuum.imgui.windows.project1d.PropertiesLinearRectWindow;
 

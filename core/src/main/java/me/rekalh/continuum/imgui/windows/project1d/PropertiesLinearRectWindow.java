@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import imgui.ImGui;
 import imgui.type.ImString;
 import me.rekalh.continuum.imgui.windows.CreateProjectWindow;
-import me.rekalh.continuum.imgui.windows.PropertiesWindow;
+import me.rekalh.continuum.imgui.PropertiesWindow;
 import me.rekalh.continuum.util.ShaderManager;
 
 public class PropertiesLinearRectWindow extends PropertiesWindow {
