@@ -5,6 +5,11 @@ import imgui.flag.ImGuiWindowFlags;
 import me.rekalh.continuum.Main;
 import me.rekalh.continuum.imgui.ImGuiWindow;
 
+/*
+    As the class name suggests, this class is used for testing purposes. It should never be rendered under normal
+    circumstances. If it does, something has gone terribly wrong...
+ */
+
 public class TestWindow extends ImGuiWindow {
 
     private final float[] color;

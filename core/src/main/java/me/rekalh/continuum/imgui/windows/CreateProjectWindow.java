@@ -9,6 +9,15 @@ import me.rekalh.continuum.imgui.ImGuiWindow;
 import me.rekalh.continuum.imgui.windows.project1d.Linear1DRenderWindow;
 import me.rekalh.continuum.imgui.windows.project1d.PropertiesLinear1DWindow;
 
+/*
+    /!\ Absolute mess. Please proceed with caution. /!\
+
+    This is the Create Project window. You can specify the project type, and it automagically sets everything up for you.
+    The implementation is really awful, and it should be reworked in the future.
+
+    Won't bother commenting much.
+ */
+
 public class CreateProjectWindow extends ImGuiWindow {
 
     private ProjectType type;
@@ -33,14 +42,17 @@ public class CreateProjectWindow extends ImGuiWindow {
 
     @Override
     public void render() {
+        // Select project type (1-D or 2-D (3-D coming soon in stores near you! -> See footnote 1))
         boolean hasSelectedType = (type != ProjectType.NONE);
         selectType();
 
         if (hasSelectedType) {
+            // Select geometry (1-D: Linear, 2-D: Rectangular and Circular)
             boolean hasSelectedGeometry = ((shape1D != Shape1D.NONE && type == ProjectType.D1) || (shape2D != Shape2D.NONE && type == ProjectType.D2));
             selectGeometry();
 
             if (hasSelectedGeometry) {
+                // Enter project name
                 enterName();
             }
         } else {
@@ -60,8 +72,8 @@ public class CreateProjectWindow extends ImGuiWindow {
 
     ImInt shape1DIndexSelected = new ImInt(0);
     ImInt shape2DIndexSelected = new ImInt(0);
-    final String[] shapeOptionsD1 = new String[] {"Select Geometry", "Line"};
-    final String[] shapeOptionsD2 = new String[] {"Select Geometry", "Rectangle", "Circle"};
+    final String[] shapeOptionsD1 = new String[] {"Select Geometry", "Linear"};
+    final String[] shapeOptionsD2 = new String[] {"Select Geometry", "Rectangular", "Circular"};
 
     private void selectGeometry() {
         switch (type) {
@@ -140,3 +152,5 @@ public class CreateProjectWindow extends ImGuiWindow {
         }
     }
 }
+
+// Footnote 1: Not happening.

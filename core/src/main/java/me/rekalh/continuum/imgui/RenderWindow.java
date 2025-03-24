@@ -2,6 +2,11 @@ package me.rekalh.continuum.imgui;
 
 import me.rekalh.continuum.util.FBOManager;
 
+/*
+    Special subclass (child) of ImGuiWindow. It is used specifically for custom rendering. Uses an FBOManager.
+    Used (almost) exclusively, for the visualizing part.
+ */
+
 public abstract class RenderWindow extends ImGuiWindow {
 
     protected FBOManager manager;
@@ -18,6 +23,12 @@ public abstract class RenderWindow extends ImGuiWindow {
 
     private void create() {
         manager = new FBOManager(this.width, this.height);
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        manager.dispose();
     }
 
     @Override

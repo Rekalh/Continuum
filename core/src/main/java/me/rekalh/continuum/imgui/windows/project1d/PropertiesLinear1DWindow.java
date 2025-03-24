@@ -4,12 +4,20 @@ import imgui.ImGui;
 import imgui.type.ImString;
 import me.rekalh.continuum.imgui.ImGuiWindow;
 
+/*
+    In this window you specify the parameters for the project. These parameters include:
+        - Width and height of the geometry
+        - 2 Color accents
+        - More to come in the future (provided the project doesn't get abandoned)
+ */
+
 public class PropertiesLinear1DWindow extends ImGuiWindow {
 
     private final float[] pWidth = {100};
     private final float[] pHeight = {100};
     private final float[] pColor1 = {1f, 0f, 0f};
     private final float[] pColor2 = {0f, 0f, 1f};
+    private final float[] pColor3 = {0f, 1f, 0f};
 
     private final String projectName;
 
@@ -30,8 +38,9 @@ public class PropertiesLinear1DWindow extends ImGuiWindow {
         ImGui.text("Parameters");
         ImGui.dragFloat("Width", pWidth);
         ImGui.dragFloat("Height", pHeight);
-        ImGui.colorPicker3("Select color 1", pColor1);
-        ImGui.colorPicker3("Select color 2", pColor2);
+        ImGui.colorEdit3("Select 'high' color", pColor1);
+        ImGui.colorEdit3("Select 'low' color", pColor2);
+        ImGui.colorEdit3("Select 'neutral' color", pColor3);
     }
 
     public float getPWidth() {
@@ -48,6 +57,10 @@ public class PropertiesLinear1DWindow extends ImGuiWindow {
 
     public float[] getPColor2() {
         return this.pColor2;
+    }
+
+    public float[] getPColor3() {
+        return this.pColor3;
     }
 
     public String getProjectName() {

@@ -3,6 +3,12 @@ package me.rekalh.continuum.imgui;
 import imgui.ImGui;
 import imgui.ImVec2;
 
+/*
+    Parent class (abstract) of all custom windows. It uses ImGui integration in order to create a window.
+    All children implement the render function, where ImGui elements can be added. The class handles the sizing and
+    positioning of the window. What gets drawn is handled in the implementation of this class for each specific case.
+ */
+
 public abstract class ImGuiWindow {
 
     protected int height;
@@ -44,7 +50,7 @@ public abstract class ImGuiWindow {
         }
     }
 
-    public void renderSetup() {
+    public void setup() {
         if (!hasCustomSize)
             ImGui.setNextWindowSize((float)width, (float)height);
 

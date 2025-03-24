@@ -12,6 +12,11 @@ import org.lwjgl.opengl.GL;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    This class is the supporting pillar of this whole project. It handles the rendering of each window. You can add
+    windows to the rendering queue using the ImGuiRenderer#addWindowToQueue method.
+ */
+
 public class ImGuiRenderer {
 
     ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
@@ -21,6 +26,7 @@ public class ImGuiRenderer {
     List<ImGuiWindow> queuedWindows = new ArrayList<>();
 
     public ImGuiRenderer() {
+        // Set up ImGui
         long windowHandle = ((Lwjgl3Graphics) Gdx.graphics).getWindow().getWindowHandle();
         GLFW.glfwMakeContextCurrent(windowHandle);
         GL.createCapabilities();
@@ -44,21 +50,26 @@ public class ImGuiRenderer {
         imGuiGlfw.newFrame();
         ImGui.newFrame();
 
+        // Add all queued windows to the windows-to-be-rendered list
         if (queuedWindows.size() > 0) {
             activeWindows.addAll(queuedWindows);
             queuedWindows.clear();
         }
 
+        // Set up and render each window
         activeWindows.removeIf(window -> !window.isOpen());
         for (ImGuiWindow window : activeWindows) {
+            // Position each window so that they don't overlap (to be implemented!)
             if (!window.hasBeenPlaced()) {
                 ImGui.setNextWindowPos(currentX, currentY);
                 window.setPlaced();
             }
 
-            window.renderSetup();
+            // Call the setup function -> It internally calls ImGuiWindow#render
+            window.setup();
         }
 
+        // Render ImGui
         ImGui.render();
         imGuiGl3.renderDrawData(ImGui.getDrawData());
     }

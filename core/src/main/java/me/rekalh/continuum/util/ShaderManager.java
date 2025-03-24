@@ -3,6 +3,10 @@ package me.rekalh.continuum.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
+/*
+    Utility class for loading shaders. If there's an error, ShaderManager#loadShader returns null.
+ */
+
 public class ShaderManager {
 
     public static ShaderProgram loadShader(String vertex, String fragment) {

@@ -4,24 +4,23 @@ precision mediump float;
 
 uniform vec3 u_color1;
 uniform vec3 u_color2;
-uniform vec4 u_region;
+uniform vec3 u_color3;
+uniform vec2 u_size;
+
+uniform vec2 u_resolution;
 
 void main() {
-    vec2 fragPos = gl_FragCoord.xy;
+    vec2 normalized_coords = gl_FragCoord.xy / u_resolution;
+    vec2 normalized_size = u_size / u_resolution;
 
-    if (fragPos.x < u_region.x || fragPos.x > u_region.z || fragPos.y < u_region.y || fragPos.y > u_region.w) {
-        discard;
+    float progress = (normalized_coords.x + normalized_size.x / 2 - 0.5) / normalized_size.x;
+
+    if (normalized_coords.x > 0.5 - normalized_size.x / 2 && normalized_coords.x < 0.5 + normalized_size.x / 2
+    && normalized_coords.y > 0.5 - normalized_size.y / 2 && normalized_coords.y < 0.5 + normalized_size.y / 2) {
+        if (progress < 0.5) {
+            gl_FragColor = vec4(mix(u_color1, u_color3, 2 * progress), 1.0);
+        } else {
+            gl_FragColor = vec4(mix(u_color3, u_color2, 2 * progress - 1), 1.0);
+        }
     }
-
-    float t = (fragPos.x - u_region.x) / (u_region.z - u_region.x);
-
-    vec3 color = vec3(0.);
-
-    if (t < 0.5) {
-        color = mix(u_color1, u_color2, t * 2.0);
-    } else {
-        color = mix(u_color1, u_color2, (t - 0.5) * 2.0);
-    }
-
-    gl_FragColor = vec4(color, 1.0);
 }
